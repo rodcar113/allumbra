@@ -692,6 +692,111 @@ a, button, .fl-button, .menu-item a {
     */
 }
 
+/* ========== MOBILE FONT SIZE CONTROL ========== */
+.font-size-control {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 15px;
+    z-index: 9997;
+    background: linear-gradient(135deg, #1a3a6c, #5eb3e4);
+    border-radius: 30px;
+    padding: 8px 12px;
+    box-shadow: 0 4px 15px rgba(26, 58, 108, 0.4);
+    align-items: center;
+    gap: 8px;
+}
+
+.font-size-control button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: #fff;
+    color: #1a3a6c;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.font-size-control button:hover {
+    transform: scale(1.1);
+    background: #f0f0f0;
+}
+
+.font-size-control button:active {
+    transform: scale(0.95);
+}
+
+.font-size-label {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    min-width: 35px;
+    text-align: center;
+}
+
+@media (max-width: 991px) {
+    .font-size-control {
+        display: flex;
+    }
+}
+
+@media (max-width: 575px) {
+    .font-size-control {
+        bottom: 85px;
+        left: 12px;
+        padding: 6px 10px;
+    }
+    
+    .font-size-control button {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+    }
+}
+
+/* Font size multiplier classes */
+body.font-size-1 { --font-multiplier: 1; }
+body.font-size-2 { --font-multiplier: 1.15; }
+body.font-size-3 { --font-multiplier: 1.3; }
+body.font-size-4 { --font-multiplier: 1.45; }
+body.font-size-5 { --font-multiplier: 1.6; }
+
+@media (max-width: 991px) {
+    body.font-size-2 p, body.font-size-2 li, body.font-size-2 span,
+    body.font-size-2 .pp-infobox-description p, body.font-size-2 .pp-sub-heading p,
+    body.font-size-2 .pp-review-text p { font-size: calc(1rem * 1.15) !important; }
+    body.font-size-2 h2, body.font-size-2 .heading-title { font-size: calc(1.8rem * 1.15) !important; }
+    body.font-size-2 h3 { font-size: calc(1.4rem * 1.15) !important; }
+    body.font-size-2 h4, body.font-size-2 .pp-infobox-title { font-size: calc(1.2rem * 1.15) !important; }
+    
+    body.font-size-3 p, body.font-size-3 li, body.font-size-3 span,
+    body.font-size-3 .pp-infobox-description p, body.font-size-3 .pp-sub-heading p,
+    body.font-size-3 .pp-review-text p { font-size: calc(1rem * 1.3) !important; }
+    body.font-size-3 h2, body.font-size-3 .heading-title { font-size: calc(1.8rem * 1.3) !important; }
+    body.font-size-3 h3 { font-size: calc(1.4rem * 1.3) !important; }
+    body.font-size-3 h4, body.font-size-3 .pp-infobox-title { font-size: calc(1.2rem * 1.3) !important; }
+    
+    body.font-size-4 p, body.font-size-4 li, body.font-size-4 span,
+    body.font-size-4 .pp-infobox-description p, body.font-size-4 .pp-sub-heading p,
+    body.font-size-4 .pp-review-text p { font-size: calc(1rem * 1.45) !important; }
+    body.font-size-4 h2, body.font-size-4 .heading-title { font-size: calc(1.8rem * 1.45) !important; }
+    body.font-size-4 h3 { font-size: calc(1.4rem * 1.45) !important; }
+    body.font-size-4 h4, body.font-size-4 .pp-infobox-title { font-size: calc(1.2rem * 1.45) !important; }
+    
+    body.font-size-5 p, body.font-size-5 li, body.font-size-5 span,
+    body.font-size-5 .pp-infobox-description p, body.font-size-5 .pp-sub-heading p,
+    body.font-size-5 .pp-review-text p { font-size: calc(1rem * 1.6) !important; }
+    body.font-size-5 h2, body.font-size-5 .heading-title { font-size: calc(1.8rem * 1.6) !important; }
+    body.font-size-5 h3 { font-size: calc(1.4rem * 1.6) !important; }
+    body.font-size-5 h4, body.font-size-5 .pp-infobox-title { font-size: calc(1.2rem * 1.6) !important; }
+}
+
 /* ========== FLOATING MOBILE MENU STYLES ========== */
 
 /* Mobile menu overlay */
@@ -2493,5 +2598,61 @@ window.addEventListener('load', function() {
         });
     }, 2000);
 });
+
+// ========== MOBILE FONT SIZE CONTROL ==========
+(function() {
+    let currentFontSize = parseInt(localStorage.getItem('mobileFontSize')) || 1;
+    const minSize = 1;
+    const maxSize = 5;
+    const sizeLabels = ['A', 'A+', 'A++', 'A+++', 'A++++'];
+    
+    // Create the font size control element
+    const control = document.createElement('div');
+    control.className = 'font-size-control';
+    control.innerHTML = `
+        <button class="font-decrease" aria-label="Decrease font size">−</button>
+        <span class="font-size-label">${sizeLabels[currentFontSize - 1]}</span>
+        <button class="font-increase" aria-label="Increase font size">+</button>
+    `;
+    document.body.appendChild(control);
+    
+    const decreaseBtn = control.querySelector('.font-decrease');
+    const increaseBtn = control.querySelector('.font-increase');
+    const label = control.querySelector('.font-size-label');
+    
+    function applyFontSize(size) {
+        // Remove all font size classes
+        for (let i = 1; i <= 5; i++) {
+            document.body.classList.remove('font-size-' + i);
+        }
+        // Add the new font size class
+        document.body.classList.add('font-size-' + size);
+        label.textContent = sizeLabels[size - 1];
+        localStorage.setItem('mobileFontSize', size);
+        
+        // Update button states
+        decreaseBtn.style.opacity = size <= minSize ? '0.5' : '1';
+        increaseBtn.style.opacity = size >= maxSize ? '0.5' : '1';
+    }
+    
+    decreaseBtn.addEventListener('click', function() {
+        if (currentFontSize > minSize) {
+            currentFontSize--;
+            applyFontSize(currentFontSize);
+        }
+    });
+    
+    increaseBtn.addEventListener('click', function() {
+        if (currentFontSize < maxSize) {
+            currentFontSize++;
+            applyFontSize(currentFontSize);
+        }
+    });
+    
+    // Apply saved font size on load
+    if (currentFontSize > 1) {
+        applyFontSize(currentFontSize);
+    }
+})();
 </script>
 </body></html>
