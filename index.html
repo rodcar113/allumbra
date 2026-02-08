@@ -186,6 +186,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 .fl-node-wo2x6gbm4r17 .uabb-row-separator { display: none !important; }
 /* Hide Read More buttons */
 .pp-infobox-button { display: none !important; }
+/* Animation fallback - show elements if waypoints doesn't trigger */
+.fl-animation:not(.fl-animated) {
+    animation: showFallback 0s 2s forwards !important;
+}
+@keyframes showFallback {
+    to { opacity: 1 !important; }
+}
+/* Ensure animated elements are visible */
+.fl-animation.fl-animated { opacity: 1 !important; }
 </style>
 <style>
 /* Language Switch Styles */
@@ -1019,8 +1028,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 	</div>
 </div>
-<div class="fl-row fl-row-full-width fl-row-bg-parallax fl-node-dym3pahl26kw fl-row-default-height fl-row-align-center fl-row-bg-overlay" data-node="dym3pahl26kw" data-parallax-speed="2" data-parallax-image="./wp-content/uploads/2019/03/JBIrrigation_sprinkler-scaled.jpg">
-	<div class="fl-row-content-wrap" style="background-position: center 797.556px; background-image: url(&quot;./wp-content/uploads/2019/03/JBIrrigation_sprinkler-scaled.jpg&quot;);">
+<div class="fl-row fl-row-full-width fl-row-bg-parallax fl-node-dym3pahl26kw fl-row-default-height fl-row-align-center fl-row-bg-overlay" data-node="dym3pahl26kw" data-parallax-speed="2" data-parallax-image="https://allumbraoutdoors.com/wp-content/uploads/2019/03/JBIrrigation_sprinkler-scaled.jpg">
+	<div class="fl-row-content-wrap" style="background-position: center center; background-image: url('https://allumbraoutdoors.com/wp-content/uploads/2019/03/JBIrrigation_sprinkler-scaled.jpg');">
 		<div class="uabb-row-separator uabb-top-row-separator">
 </div>
 						<div class="fl-row-content fl-row-fixed-width fl-node-content">
@@ -2225,6 +2234,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     });
+});
+
+// ========== ANIMATION FALLBACK ==========
+// Force show animated elements if waypoints doesn't trigger after 3 seconds
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.querySelectorAll('.fl-animation:not(.fl-animated)').forEach(function(el) {
+            el.classList.add('fl-animated');
+            el.style.opacity = '1';
+        });
+    }, 2000);
 });
 </script>
 </body></html>
