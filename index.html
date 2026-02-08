@@ -343,23 +343,14 @@ a, button, .fl-button, .menu-item a {
         height: auto !important;
     }
     
-    /* Navigation */
-    .fl-menu-horizontal {
-        display: none;
+    /* Navigation - hide desktop menu, handled by mobile menu styles below */
+    .fl-menu {
+        position: relative;
     }
     
-    .fl-menu-mobile-toggle {
-        display: block !important;
-        margin: 0 auto;
-        background: linear-gradient(135deg, #1a3a6c, #5eb3e4);
-        padding: 12px 20px;
-        border-radius: 5px;
-    }
-    
-    .fl-menu-mobile-toggle .hamburger-menu {
-        fill: #fff;
-        width: 24px;
-        height: 24px;
+    /* Hide submenu toggles */
+    .fl-menu-toggle {
+        display: none !important;
     }
     
     /* Hero section */
@@ -661,48 +652,96 @@ a, button, .fl-button, .menu-item a {
 }
 
 @media (max-width: 991px) {
+    /* Ensure header allows menu dropdown to overflow */
+    header, header .fl-row, header .fl-row-content-wrap, header .fl-row-content {
+        overflow: visible !important;
+    }
+    
+    /* Ensure menu module has proper positioning */
+    .fl-module-menu {
+        position: static;
+    }
+    
+    .fl-module-menu .fl-module-content {
+        position: static;
+    }
+    
+    .fl-menu.fl-menu-responsive-toggle-mobile {
+        position: relative;
+    }
+    
     .fl-menu.fl-menu-responsive-toggle-mobile .fl-menu-mobile-toggle {
         display: flex !important;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        background: linear-gradient(135deg, #1a3a6c, #5eb3e4);
+        padding: 12px 20px;
+        border-radius: 5px;
+        border: none;
+    }
+    
+    .fl-menu.fl-menu-responsive-toggle-mobile .fl-menu-mobile-toggle svg {
+        fill: #fff;
+        width: 24px;
+        height: 24px;
     }
     
     .fl-menu.fl-menu-responsive-toggle-mobile nav {
-        display: none;
+        display: none !important;
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
         background: #fff;
         box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-        z-index: 9999;
+        z-index: 99999;
+        width: 100%;
     }
     
     .fl-menu.fl-menu-responsive-toggle-mobile nav.active {
-        display: block;
+        display: block !important;
     }
     
-    .fl-menu.fl-menu-responsive-toggle-mobile ul {
+    /* IMPORTANT: Override the display:none on horizontal menu for mobile */
+    .fl-menu.fl-menu-responsive-toggle-mobile nav.active ul.fl-menu-horizontal {
+        display: flex !important;
         flex-direction: column !important;
-        padding: 20px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
     }
     
-    .fl-menu.fl-menu-responsive-toggle-mobile ul li {
+    .fl-menu.fl-menu-responsive-toggle-mobile nav.active ul.fl-menu-horizontal > li {
         width: 100%;
         border-bottom: 1px solid #eee;
+        display: block;
     }
     
-    .fl-menu.fl-menu-responsive-toggle-mobile ul li a {
+    .fl-menu.fl-menu-responsive-toggle-mobile nav.active ul.fl-menu-horizontal > li > div,
+    .fl-menu.fl-menu-responsive-toggle-mobile nav.active ul.fl-menu-horizontal > li > a {
         display: block;
-        padding: 15px 10px;
+        padding: 15px 20px;
         font-size: 16px;
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .fl-menu.fl-menu-responsive-toggle-mobile nav.active ul.fl-menu-horizontal > li > div a {
+        color: #333;
+        text-decoration: none;
+    }
+    
+    .fl-menu.fl-menu-responsive-toggle-mobile nav.active ul.fl-menu-horizontal > li:hover {
+        background: #f5f5f5;
     }
     
     .fl-menu.fl-menu-responsive-toggle-mobile .sub-menu {
-        position: static !important;
-        box-shadow: none;
-        background: #f5f5f5;
+        display: none !important;
+    }
+    
+    .fl-menu.fl-menu-responsive-toggle-mobile .fl-menu-toggle {
+        display: none !important;
     }
 }
 
@@ -2181,14 +2220,19 @@ function translatePage() {
 document.addEventListener('DOMContentLoaded', function() { const savedLang = localStorage.getItem('preferredLang'); if (savedLang && savedLang !== currentLang) toggleLanguage(); });
 
 // ========== MOBILE MENU TOGGLE ==========
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     const mobileToggle = document.querySelector('.fl-menu-mobile-toggle');
     const nav = document.querySelector('.fl-menu nav');
     
+    console.log('Mobile menu init:', mobileToggle, nav); // Debug
+    
     if (mobileToggle && nav) {
-        mobileToggle.addEventListener('click', function() {
+        mobileToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
             nav.classList.toggle('active');
             this.setAttribute('aria-expanded', nav.classList.contains('active'));
+            console.log('Menu toggled, active:', nav.classList.contains('active')); // Debug
         });
         
         // Close menu when clicking outside
@@ -2199,11 +2243,14 @@ document.addEventListener('DOMContentLoaded', function() { const savedLang = loc
             }
         });
         
-        // Close menu when clicking a link
+        // Close menu when clicking a link (but allow navigation)
         nav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', function() {
-                nav.classList.remove('active');
-                mobileToggle.setAttribute('aria-expanded', 'false');
+                // Small delay to allow navigation
+                setTimeout(function() {
+                    nav.classList.remove('active');
+                    mobileToggle.setAttribute('aria-expanded', 'false');
+                }, 100);
             });
         });
     }
@@ -2218,7 +2265,7 @@ document.addEventListener('DOMContentLoaded', function() { const savedLang = loc
             }
         }, 250);
     });
-})();
+});
 
 // ========== TOUCH DEVICE DETECTION ==========
 if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
