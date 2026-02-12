@@ -524,8 +524,8 @@ body {
     font-size: 2.2rem;
   }
 }
-
-/* Menú sin subrayado por defecto */
+ 
+ /* Menú sin subrayado por defecto */
 nav a {
   text-decoration: none;
   position: relative;
@@ -555,5 +555,3 @@ nav a:hover::after {
 nav a:hover {
   color: #000; /* O el color que prefieras */
 }
-
- 
