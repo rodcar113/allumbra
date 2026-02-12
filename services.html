@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Allumbra Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+/* PAGE BACKGROUND CONSISTENT */
+
+body {
+  background: #0b0f19;
+  color: white;
+}
+
+/* SERVICES PAGE */
+
+.services-page {
+  padding: 110px 20px 90px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.services-page h1 {
+  text-align: center;
+  margin-bottom: 70px;
+  font-size: 2.4rem;
+}
+
+.service-detail {
+  margin-bottom: 85px;
+  opacity: 0;
+  transform: translateY(35px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.service-detail h2 {
+  color: #4da3ff;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.service-detail p {
+  opacity: 0.75;
+  line-height: 1.6;
+  max-width: 720px;
+}
+
+.service-images {
+  display: flex;
+  gap: 18px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.service-images img {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 14px;
+  transition: 0.35s ease;
+}
+
+.service-images img:hover {
+  transform: scale(1.03);
+}
+
+</style>
+
+</head>
+<body>
+
+<!-- ✅ SAME HEADER AS INDEX -->
+
+<header class="nav">
+  <div class="container nav-inner">
+    <img src="assets/logo.jpeg" alt="allumbra" class="logo" />
+
+    <nav>
+      <a href="index.html#services" data-en="Services" data-es="Servicios">Services</a>
+      <a href="index.html#about" data-en="About" data-es="Nosotros">About</a>
+      <a href="index.html#gallery" data-en="Gallery" data-es="Galería">Gallery</a>
+      <a href="index.html#contact" class="btn" data-en="Contact Us" data-es="Cotización Gratis">Contact Us</a>
+    </nav>
+
+    <button id="langBtn" class="lang-btn">ES</button>
+  </div>
+</header>
+
+<!-- ✅ SERVICES CONTENT -->
+
+<div class="services-page">
+
+  <h1 data-en="Our Outdoor Solutions" data-es="Nuestras Soluciones Exteriores">
+    Our Outdoor Solutions
+  </h1>
+
+  <!-- Lighting -->
+  <div class="service-detail" style="animation-delay:0.1s" id="lighting">
+    <h2><i class="fas fa-lightbulb"></i>
+      <span data-en="Lighting" data-es="Iluminación">Lighting</span>
+    </h2>
+    <p data-en="We design and install premium outdoor lighting systems that enhance safety, ambiance, and architectural beauty. Our lighting solutions highlight the best features of your property while creating a warm, elegant nighttime environment."
+       data-es="Diseñamos e instalamos sistemas de iluminación exterior de alta calidad que mejoran la seguridad, el ambiente y la belleza arquitectónica. Nuestras soluciones resaltan los mejores elementos de tu propiedad creando un entorno nocturno elegante y acogedor.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images.jpg">
+      <img src="./assets/images1.jpg">
+    </div>
+  </div>
+
+  <!-- Landscape -->
+  <div class="service-detail" style="animation-delay:0.2s" id="landscape">
+    <h2><i class="fas fa-leaf"></i>
+      <span data-en="Landscape" data-es="Paisajismo">Landscape</span>
+    </h2>
+    <p data-en="From elegant designs to complete outdoor transformations, we create landscapes that balance beauty, functionality, and long-term sustainability."
+       data-es="Desde diseños elegantes hasta transformaciones completas, creamos paisajes que equilibran belleza, funcionalidad y sostenibilidad a largo plazo.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images2.jpg">
+      <img src="./assets/images3.jpg">
+    </div>
+  </div>
+
+  <!-- Irrigation -->
+  <div class="service-detail" style="animation-delay:0.3s" id="irrigation">
+    <h2><i class="fas fa-droplet"></i>
+      <span data-en="Irrigation" data-es="Irrigación">Irrigation</span>
+    </h2>
+    <p data-en="Efficient irrigation systems designed to preserve water while keeping your landscape vibrant year-round."
+       data-es="Sistemas de irrigación eficientes diseñados para conservar agua mientras mantienen tu paisaje verde y saludable todo el año.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images4.png">
+    </div>
+  </div>
+
+  <!-- Pavers -->
+  <div class="service-detail" style="animation-delay:0.4s" id="pavers">
+    <h2><i class="fas fa-border-all"></i>
+      <span data-en="Pavers" data-es="Adoquines">Pavers</span>
+    </h2>
+    <p data-en="Durable and visually striking hardscape surfaces crafted with precision and premium materials."
+       data-es="Superficies duraderas y visualmente impactantes creadas con precisión y materiales de alta calidad.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images5.jpg">
+    </div>
+  </div>
+
+  <!-- Concrete Edging -->
+  <div class="service-detail" style="animation-delay:0.5s" id="concrete">
+    <h2><i class="fas fa-vector-square"></i>
+      <span data-en="Concrete Edging" data-es="Bordes de Concreto">Concrete Edging</span>
+    </h2>
+    <p data-en="Clean, defined borders that elevate the appearance and structure of your outdoor design."
+       data-es="Bordes limpios y definidos que mejoran la apariencia y la estructura de tu diseño exterior.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images6.jpeg">
+    </div>
+  </div>
+
+  <!-- Water Features -->
+  <div class="service-detail" style="animation-delay:0.6s" id="water">
+    <h2><i class="fas fa-water"></i>
+      <span data-en="Water Features" data-es="Elementos de Agua">Water Features</span>
+    </h2>
+    <p data-en="Custom-designed water elements that introduce movement, tranquility, and luxury."
+       data-es="Elementos de agua diseñados a medida que aportan movimiento, tranquilidad y lujo.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images7.jpg">
+    </div>
+  </div>
+
+  <!-- Backflow Test -->
+  <div class="service-detail" style="animation-delay:0.7s" id="backflow">
+    <h2><i class="fas fa-gauge"></i>
+      <span data-en="Backflow Test" data-es="Prueba de Contraflujo">Backflow Test</span>
+    </h2>
+    <p data-en="Certified backflow testing services ensuring safety, compliance, and protection."
+       data-es="Servicios certificados de prueba de contraflujo que garantizan seguridad y cumplimiento normativo.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images8.webp">
+    </div>
+  </div>
+
+  <!-- Artificial Turf -->
+  <div class="service-detail" style="animation-delay:0.8s" id="turf">
+    <h2><i class="fas fa-tree"></i>
+      <span data-en="Artificial Turf" data-es="Césped Artificial">Artificial Turf</span>
+    </h2>
+    <p data-en="Low-maintenance, evergreen beauty with premium artificial turf solutions."
+       data-es="Belleza siempre verde y de bajo mantenimiento con soluciones de césped artificial de alta calidad.">
+    </p>
+    <div class="service-images">
+      <img src="./assets/images9.jpg">
+    </div>
+  </div>
+
+</div>
+
+<!-- ✅ SAME SCRIPT SYSTEM -->
+
+<script src="main.js"></script>
+
+</body>
+</html>
