@@ -524,4 +524,36 @@ body {
     font-size: 2.2rem;
   }
 }
+
+/* Menú sin subrayado por defecto */
+nav a {
+  text-decoration: none;
+  position: relative;
+  color: #111; /* Asegúrate de usar el color que tú tengas */
+  font-weight: 500;
+  padding: 6px 0;
+}
+
+/* Línea deslizante */
+nav a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -4px; /* Baja un poco la línea */
+  left: 0;
+  background-color: #4da3ff; /* Color del subrayado */
+  transition: width 0.3s ease;
+}
+
+/* Al poner el cursor */
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Opcional: color al hacer hover */
+nav a:hover {
+  color: #000; /* O el color que prefieras */
+}
+
  
