@@ -104,10 +104,27 @@ footer{
 	z-index: 2;
 }
 
+
+@media (max-width: 768px){
+
+.carousel .gbox{
+    min-width:220px;
+    height:180px;
+  }
+
+}
+
+.carousel{
+  display:flex;
+  gap:15px;
+  transition: transform 0.55s cubic-bezier(.22,.61,.36,1);
+  will-change: transform;
+}
+
 .carousel-wrapper{
-  position:relative;
-  width:100%;
-  overflow:hidden;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 .carousel{
   display:flex;
@@ -177,6 +194,43 @@ footer{
   position: static; 
 }
 
+.carousel .gbox{
+  min-width:280px;
+  height:220px;
+  border-radius:10px;
+  background-size:cover;
+  background-position:center;
+  flex-shrink: 0;   /* 🔥 MUY IMPORTANTE */
+}
+
+.car-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0,0,0,.65);
+  color: white;
+  font-size: 26px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;              /* 🔥 evita que se esconda */
+  display: flex;            /* 🔥 centra el icono */
+  align-items: center;
+  justify-content: center;
+}
+
+.car-btn.prev{
+  left: 10px;
+}
+
+.car-btn.next{
+  right: 10px;
+}
+
+
+
 /* ===== MOBILE ADAPTATION ===== */
 @media (max-width: 900px){
 
@@ -205,10 +259,6 @@ footer{
     margin-top:30px;
   }
 
-  .carousel .gbox{
-    min-width:220px;
-    height:180px;
-  }
 }
 /* ===== MOBILE HEADER FIX ===== */
 @media (max-width: 768px){
