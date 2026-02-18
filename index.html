@@ -2,17 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>allumbra Lighting & Landscape Inc</title>
+<title>Allumbra Lighting & Landscape Inc</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
 
-<header class="nav">
+<!-- TOP INFO BAR -->
+<div class="top-info-bar">
+
+  <div class="top-info-container">
+
+    <div class="top-info-item">
+      <i class="fa-regular fa-envelope"></i>
+      <span>For any questions:</span>
+      <a href="mailto:a.perez@allumbraoutdoors.com">
+        a.perez@allumbraoutdoors.com
+      </a>
+    </div>
+
+    <div class="top-info-item">
+      <i class="fa-solid fa-phone phone-animated"></i>
+      <span>Have any question?</span>
+      <a href="tel:19568772107">
+        Free: (956) 8772107
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="top-divider"></div>
+
+<!-- ✅ HEADER -->
+
+<header class="nav" class="nav white-section">
+  <div class="luxury-bg"></div>
+
   <div class="container nav-inner">
     <img src="assets/logo.jpeg" alt="allumbra" class="logo" />
 
@@ -50,8 +83,12 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="services">
+<section id="services" class="services white-section">
+
+  <div class="luxury-bg"></div>
+  
   <div class="services-container">
+	
 
     <h2>Our Services</h2>
     <p>Complete outdoor solutions designed to elevate your space.</p>
@@ -153,10 +190,12 @@
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" class="section">
+<section id="gallery" class="section white-section">
+  <div class="luxury-bg"></div>
   <div class="container">
+  
     <h2 data-en="Our Work" data-es="Nuestro Trabajo">Our Work</h2>
-
+	<div class="luxury-bg"></div>
     <div class="carousel-wrapper">
   <button class="car-btn prev">&#10094;</button>
 
@@ -197,7 +236,9 @@
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="contact">
+<section id="contact" class="section white-section">
+<div class="luxury-bg"></div>
+<div class="contact-container">
 <p class="contact-line">
   <i class="fa-solid fa-phone"></i>
   <a href="tel:+19566835674">+1 (956) 683 5674</a>
@@ -228,6 +269,40 @@
   </a>
 </p>
 
+</section>
+
+<!-- ✅ CONNECT -->
+
+<section class="connect white-section">
+
+  <div class="luxury-bg"></div>
+  
+  <div class="connect-container">
+     
+    <h3>CONNECT WITH US</h3>
+
+    <div class="social-icons">
+
+      <a href="https://www.instagram.com/alumbra_lighting" target="_blank">
+        <i class="fab fa-instagram"></i>
+      </a>
+
+      <a href="https://www.tiktok.com/@allumbra_lighting" target="_blank">
+        <i class="fab fa-tiktok"></i>
+      </a>
+
+      <a href="https://www.facebook.com/allumbralighting" target="_blank">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+
+    </div>
+
+  </div>
+  
+  
+</section>
+
+
 <footer class="earth-footer">
   <div class="earth-center">
     <p class="earth-title">ALLUMBRA LIGHTING & LANDSCAPE INC</p>
@@ -253,9 +328,28 @@
     COPYRIGHT © 2026 ALLUMBRA LIGHTING & LANDSCAPE INC · ALL RIGHTS RESERVED.
   </p>
 </footer>
+<script>
+document.querySelectorAll('.social-icons a').forEach(icon => {
 
+  icon.addEventListener('mousemove', e => {
+    const rect = icon.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
 
-<script src="main.js"></script>
+    icon.style.transform = `
+      translateY(-6px)
+      scale(1.18)
+      rotateX(${ -y / 8 }deg)
+      rotateY(${ x / 8 }deg)
+    `;
+  });
+
+  icon.addEventListener('mouseleave', () => {
+    icon.style.transform = '';
+  });
+
+});
+</script>
 
 <script>
 document.querySelectorAll('.service-box').forEach(box => {
@@ -291,6 +385,24 @@ document.querySelectorAll('.service-box').forEach(box => {
 });
 </script>
 
+<script>
+document.querySelectorAll('.luxury-bg').forEach(bg => {
 
+  const particleCount = 14;
+
+  for (let i = 0; i < particleCount; i++) {
+
+    const particle = document.createElement('span');
+
+    particle.style.left = Math.random() * 100 + "%";
+    particle.style.top = Math.random() * 100 + "%";
+
+    particle.style.animationDuration = (7 + Math.random() * 6) + "s";
+    particle.style.animationDelay = Math.random() * 5 + "s";
+
+    bg.appendChild(particle);
+  }
+});
+</script>
 </body>
 </html>
