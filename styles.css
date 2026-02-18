@@ -722,31 +722,9 @@ nav a:hover {
 .top-info-bar {
   background: white;
   font-size: 13px;
-  color: #555;
   position: relative;
   z-index: 1000;
-}
-
-
-.info-container {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 0 16px;
-}
-
-.top-info-bar i {
-  margin-right: 8px;
-  color: #007bff; /* Color azul igual a referencia */
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.top-info-bar a {
-  text-decoration: none;
-  color: #3a3a3a;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .top-info-bar i:hover {
@@ -756,13 +734,7 @@ nav a:hover {
 
 /* Adaptive for Mobile */
 
-@media (max-width: 768px) {
-  .info-container {
-    flex-direction: column;
-    text-align: center;
-    gap: 6px;
-  }
-}
+
 
 .white-section,
 .services,
@@ -845,35 +817,57 @@ header,
   margin: auto;
   display: flex;
   justify-content: flex-end;
-  gap: 40px;
+  align-items: center;
+  gap: 28px;
   padding: 10px 20px;
+
+  flex-wrap: wrap;
 }
 
 .top-info-item {
   display: flex;
   align-items: center;
-  gap: 8px;
-  white-space: nowrap;
+  gap: 6px;
+  color: #666;
 }
 
 .top-info-item i {
-  color: #1fa36b;
-  font-size: 14px;
+  color: var(--brand-blue);
+  font-size: 13px;
 }
 
 .top-info-item span {
-  color: #777;
+  color: #888;
 }
 
 .top-info-item a {
   text-decoration: none;
-  color: #444;
+  color: #333;
   font-weight: 500;
-  transition: color 0.25s ease;
 }
 
 .top-info-item a:hover {
   color: #2f6df6; /* azul Allumbra */
+}
+
+/* ✅ MOBILE PERFECT */
+@media (max-width: 768px) {
+
+  .top-info-container {
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 14px;
+  }
+
+  .top-info-item {
+    font-size: 13px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .top-info-item span {
+    display: none;          /* look premium limpio */
+  }
 }
 
 .phone-animated {
